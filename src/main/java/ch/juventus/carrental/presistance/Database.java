@@ -6,4 +6,6 @@ public interface Database {
     String loadHelloWorldGreeting();
 
     String dbAsString() throws IOException;
+
+
 }

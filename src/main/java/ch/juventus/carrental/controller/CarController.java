@@ -4,6 +4,7 @@ package ch.juventus.carrental.controller;
 import ch.juventus.carrental.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -62,20 +63,22 @@ public class CarController {
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     //@PutMapping("car/{id}")
     @PostMapping("car/{id}/rentings")
-    public void rentCar(@PathVariable int id) {
-        System.out.println("rent Car with id = " + id);
+    public void rentCar(@RequestBody String rentings, @PathVariable int id) throws IOException {
+        System.out.println("rent Car with id = " + id +" on Day "+ rentings);
+        carService.rentCar(rentings, id);
+
     }
 
     //Sucht Autos mit gewissen Filterkriterien
     //Die Liste der passenden Autos soll aufsteigend nach Preis sortiert sein
-    /*
+
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
-    @GetMapping("cars?filter={...}")
-    public void filterCars(String filter) {
-        System.out.println("filter Cars = " + filter);
+    //@GetMapping("cars") //?filter={filter}
+    public void filterCars(@RequestParam("filter") String[] filters) {
+        System.out.println(filters);
     }
 
-     */
+
 
 
 }

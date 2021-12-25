@@ -2,6 +2,7 @@ package ch.juventus.carrental.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Car {
@@ -13,7 +14,7 @@ public class Car {
     private final int seats;
     private final double pricePerDay;
     private final boolean airCondition;
-    private final List<String> rentInformation;
+    private final List<List<String>> rentInformation;
 
 
     // Constructor
@@ -25,7 +26,7 @@ public class Car {
             @JsonProperty(value = "seats", required = true) int seats,
             @JsonProperty(value = "pricePerDay", required = true) double pricePerDay,
             @JsonProperty(value = "airCondition", required = true) boolean airCondition,
-            @JsonProperty(value = "rentInformation") List<String> rentInformation) {
+            @JsonProperty(value = "rentInformation") List<List<String>> rentInformation) {
 
         this.id = id;
         this.name = name;
@@ -84,7 +85,8 @@ public class Car {
         return airCondition;
     }
 
-    public List<String> getRentInformation() {
+    public List<List<String>> getRentInformation() {
         return rentInformation;
     }
+    public void addRentInformation(String newRentInformation) {rentInformation.add(Collections.singletonList(newRentInformation));}
 }

@@ -26,8 +26,8 @@ public class CarService {
     public void postCarToDB(String carString) throws IOException {
         List<Car> cars = fileDataBase.dbAsObject();
         Car newCar = fileDataBase.jsonStringToObjact(carString);
-        //newCar.setId(fileDataBase.idHeandler());
-        cars.add(fileDataBase.jsonStringToObjact(carString));
+        newCar.setId(fileDataBase.idHeandler());
+        cars.add(newCar);
         fileDataBase.saveArrayAsDB(cars);
     }
 
@@ -44,9 +44,20 @@ public class CarService {
         Car newCar = fileDataBase.jsonStringToObjact(carString);
 
         fileDataBase.deleteCarByID((int) oldCar.getId());
-
+        // new Car Id was memoried in carStrin
         List<Car> cars = fileDataBase.dbAsObject();
         cars.add(newCar);
         fileDataBase.saveArrayAsDB(cars);
+    }
+
+    public void rentCar(String rentings, int id) throws IOException {
+        /*
+        Car rentCar = fileDataBase.showCarByID(id);
+        List<Car> cars = fileDataBase.deleteCarByID(id);
+        rentCar.addRentInformation(rentings);
+        cars.add(rentCar);
+        fileDataBase.saveArrayAsDB(cars);
+
+         */
     }
 }
