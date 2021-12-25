@@ -1,0 +1,47 @@
+[
+ {
+  "id": 9,
+  "name": "Porsche Tycan",
+  "type": "LIMOUSINE",
+  "transmission": "MANUAL",
+  "seats": 5,  "pricePerDay": 60.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 2,
+  "name": "Mercedes SLS",
+  "type": "LIMOUSINE",
+  "transmission": "MANUAL",
+  "seats": 5,  "pricePerDay": 20.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 1,
+  "name": "Mercedes C 63 AMG",
+  "type": "LIMOUSINE",
+  "transmission": "MANUAL",
+  "seats": 5,  "pricePerDay": 40.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 3,
+  "name": "Porsche 911",
+  "type": "LIMOUSINE",
+  "transmission": "MANUAL",
+  "seats": 5,  "pricePerDay": 90.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 4,
+  "name": "BMW i8 elektro",
+  "type": "LIMOUSINE",
+  "transmission": "MANUAL",
+  "seats": 5,  "pricePerDay": 600.0,
+  "airCondition": false,
+  "rentInformation": []
+ }
+]
