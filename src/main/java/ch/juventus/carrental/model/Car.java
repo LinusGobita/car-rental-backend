@@ -14,7 +14,7 @@ public class Car {
     private final int seats;
     private final double pricePerDay;
     private final boolean airCondition;
-    private final List<List<String>> rentInformation;
+    private List<RentInformation> rentInformation;
 
 
     // Constructor
@@ -26,7 +26,7 @@ public class Car {
             @JsonProperty(value = "seats", required = true) int seats,
             @JsonProperty(value = "pricePerDay", required = true) double pricePerDay,
             @JsonProperty(value = "airCondition", required = true) boolean airCondition,
-            @JsonProperty(value = "rentInformation") List<List<String>> rentInformation) {
+            @JsonProperty(value = "rentInformation") List<RentInformation> rentInformation) {
 
         this.id = id;
         this.name = name;
@@ -85,8 +85,8 @@ public class Car {
         return airCondition;
     }
 
-    public List<List<String>> getRentInformation() {
+    public List<RentInformation> getRentInformation() {
         return rentInformation;
     }
-    public void addRentInformation(String newRentInformation) {rentInformation.add(Collections.singletonList(newRentInformation));}
+    public void addRentInformation(RentInformation newRentInformation) {rentInformation.add(newRentInformation);}
 }

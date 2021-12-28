@@ -1,6 +1,7 @@
 package ch.juventus.carrental.controller;
 
 
+import ch.juventus.carrental.model.RentInformation;
 import ch.juventus.carrental.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,10 +64,9 @@ public class CarController {
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     //@PutMapping("car/{id}")
     @PostMapping("car/{id}/rentings")
-    public void rentCar(@RequestBody String rentings, @PathVariable int id) throws IOException {
+    public void rentCar(@RequestBody RentInformation rentings, @PathVariable int id) throws IOException {
         System.out.println("rent Car with id = " + id +" on Day "+ rentings);
         carService.rentCar(rentings, id);
-
     }
 
     //Sucht Autos mit gewissen Filterkriterien
@@ -77,8 +77,6 @@ public class CarController {
     public void filterCars(@RequestParam("filter") String[] filters) {
         System.out.println(filters);
     }
-
-
 
 
 }

@@ -16,15 +16,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+
 @Repository
-public class FileDatabase {
+public class FileDatabase implements Database{
 
     private String databasePath = "src/main/java/ch/juventus/carrental/presistance/cars.json";
 
-    //@Override
-    public String loadHelloWorldGreeting() {
-        return "hello world";
-    }
+
 
     // Database
     public String dbAsString() throws IOException {
@@ -34,6 +32,7 @@ public class FileDatabase {
         return dbAsString;
     }
 
+    @Override
     public List<Car> dbAsObject() throws IOException {
         String dbAsString = dbAsString();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -42,7 +41,7 @@ public class FileDatabase {
         return cars;
     }
 
-    // Cars
+    @Override
     public Car showCarByID(Integer id) throws IOException {
         List<Car> cars = dbAsObject();
 
@@ -55,6 +54,7 @@ public class FileDatabase {
         return null;
     }
 
+    @Override
     public List<Car> deleteCarByID(Integer id) throws IOException {
         List<Car> cars = dbAsObject();
         for (Car car: cars){
@@ -67,18 +67,21 @@ public class FileDatabase {
         return cars;
     }
 
+    @Override
     public String objectToJsonString(Car carObject) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String carInString = objectMapper.writeValueAsString(carObject);
         return carInString;
     }
 
+    @Override
     public Car jsonStringToObjact(String carString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         Car car = objectMapper.readValue(carString, Car.class);
         return car;
     }
 
+    @Override
     public Integer idHeandler() throws IOException {
         List<Car> cars = dbAsObject();
         Set<Integer> ids = new TreeSet<Integer>();
@@ -91,12 +94,13 @@ public class FileDatabase {
         return i;
     }
 
-
+    @Override
     public void saveArrayAsDB(List<Car> cars) throws IOException {
         FileWriter file = new FileWriter(databasePath);
         try {
             file.write("[\n");
             for (Car car : cars) {
+
 
                 file.write(" {\n");
                 file.write("  \"id\": " + car.getId() + ",\n");
