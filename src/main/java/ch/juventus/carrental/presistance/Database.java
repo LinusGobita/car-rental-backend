@@ -9,12 +9,13 @@ import java.util.List;
 public interface Database {
 
     String dbAsString() throws IOException;
-    List<Car> dbAsObject() throws IOException;
     Car showCarByID(Integer id) throws IOException;
-    List<Car> deleteCarByID(Integer id) throws IOException;
     String objectToJsonString(Car carObject) throws JsonProcessingException;
     Car jsonStringToObjact(String carString) throws JsonProcessingException;
     Integer idHeandler() throws IOException;
-    void saveArrayAsDB(List<Car> cars) throws IOException;
+    void addCar(Car car);
+    List<Car> getCars();
+    void removeCar(Car car);
+    void removeCarByID(Integer id) throws IOException;
 
 }
