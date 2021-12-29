@@ -27,15 +27,6 @@
   "rentInformation": []
  },
  {
-  "id": 6,
-  "name": "Name",
-  "type": "CABRIO",
-  "transmission": "MANUAL",
-  "seats": 0,  "pricePerDay": 0.0,
-  "airCondition": true,
-  "rentInformation": []
- },
- {
   "id": 3,
   "name": "Porsche 911",
   "type": "LIMOUSINE",
