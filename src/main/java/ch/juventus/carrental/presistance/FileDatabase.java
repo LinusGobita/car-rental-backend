@@ -50,18 +50,18 @@ public class FileDatabase implements Database {
     public String dbAsString() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         String arrayToJson = objectMapper.writeValueAsString(cars);
-        System.out.println(arrayToJson);
         return arrayToJson;
+    }
 
-        /*File file = new File(databasePath);
-        String dbAsString = new String(Files.readAllBytes(Paths.get(file.toURI())));
-        return dbAsString;
-
-         */
+    public String rentinformationAsString(List<RentInformation> rentings) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String arrayToJson = objectMapper.writeValueAsString(rentings);
+        return arrayToJson;
     }
 
     @Override
     public Car showCarByID(Integer id) throws IOException {
+
         for (Car car : cars) {
             if (car.getId() == id) {
                 return car;
@@ -70,6 +70,7 @@ public class FileDatabase implements Database {
         System.out.println("Felher in FileDatabase Show ID");
         return null;
     }
+
 
     @Override
     public String objectToJsonString(Car carObject) throws JsonProcessingException {
@@ -111,28 +112,8 @@ public class FileDatabase implements Database {
                 file.write("  \"transmission\": \"" + car.getTransmission() + "\",\n");
                 file.write("  \"seats\": " + car.getSeats() + ",");
                 file.write("  \"pricePerDay\": " + car.getPricePerDay() + ",\n");
-                file.write("  \"airCondition\": " + car.isAirCondition() + ",\n");
-                file.write("  \"rentInformation\":["+"]\n");
-                   /*
-                    file.write("[\n");
-
-
-                    for (RentInformation rentings : car.getRentInformation()) {
-                        file.write("        \"startDate\": " + rentings.getStartDate() + ",\n");
-                        file.write("        \"endDate\": " + rentings.getEndDate() + ",\n");
-                        file.write("        \"totalPrice\": " + rentings.getTotalPrice() + "\n");
-                     List<RentInformation> rentinformations = new ArrayList<RentInformation>();
-                     rentinformations = car.getRentInformation();
-                        if (rentings == rentinformations.get(rentinformations.size()- 1)){
-                            file.write(" }\n");
-                        } else {
-                            file.write(" },\n");
-                        }
-                    }
-                file.write("]\n");
-
-                    */
-
+                file.write("  \"airCondition\": " +  car.isAirCondition() + ",\n");
+                file.write("  \"rentInformation\": "+ rentinformationAsString(car.getRentInformation()) +"\n");
 
                 if (car == cars.get(cars.size() - 1)) {
                     file.write(" }\n");
@@ -155,6 +136,11 @@ public class FileDatabase implements Database {
 
     public void addCar(Car car) {
         cars.add(car);
+    }
+
+    public void addRentInformationToCar(RentInformation rentings, int id) throws IOException {
+        Car rentetCar = showCarByID(id);
+        rentetCar.addRentInformation(rentings);
     }
 
     public void removeCar(Car car) {

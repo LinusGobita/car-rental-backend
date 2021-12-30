@@ -43,7 +43,6 @@ public class CarService {
     }
 
     public void rentCar(RentInformation rentings, int id) throws IOException {
-
-
+        dataBase.addRentInformationToCar(rentings, id);
     }
 }

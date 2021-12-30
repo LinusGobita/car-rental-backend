@@ -1,6 +1,7 @@
 package ch.juventus.carrental.presistance;
 
 import ch.juventus.carrental.model.Car;
+import ch.juventus.carrental.model.RentInformation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.io.IOException;
@@ -17,5 +18,6 @@ public interface Database {
     List<Car> getCars();
     void removeCar(Car car);
     void removeCarByID(Integer id) throws IOException;
+    void addRentInformationToCar(RentInformation rentings, int id) throws IOException;
 
 }
