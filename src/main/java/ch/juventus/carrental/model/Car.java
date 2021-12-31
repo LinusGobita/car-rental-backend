@@ -53,7 +53,8 @@ public class Car {
 
     public enum Transmission {
         MANUAL,
-        AUTOMATIC
+        AUTOMATIC;
+
     }
 
     public long getId() {

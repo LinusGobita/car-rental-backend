@@ -2,6 +2,7 @@ package ch.juventus.carrental.presistance;
 
 
 import ch.juventus.carrental.model.Car;
+import ch.juventus.carrental.model.Filter;
 import ch.juventus.carrental.model.RentInformation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -30,7 +31,8 @@ public class FileDatabase implements Database {
         File file = new File(databasePath);
         String dbAsString = new String(Files.readAllBytes(Paths.get(file.toURI())));
         ObjectMapper objectMapper = new ObjectMapper();
-        cars = objectMapper.readValue(dbAsString, new TypeReference<List<Car>>() {});
+        cars = objectMapper.readValue(dbAsString, new TypeReference<List<Car>>() {
+        });
 
 
         Timer t = new Timer();
@@ -112,8 +114,8 @@ public class FileDatabase implements Database {
                 file.write("  \"transmission\": \"" + car.getTransmission() + "\",\n");
                 file.write("  \"seats\": " + car.getSeats() + ",");
                 file.write("  \"pricePerDay\": " + car.getPricePerDay() + ",\n");
-                file.write("  \"airCondition\": " +  car.isAirCondition() + ",\n");
-                file.write("  \"rentInformation\": "+ rentinformationAsString(car.getRentInformation()) +"\n");
+                file.write("  \"airCondition\": " + car.isAirCondition() + ",\n");
+                file.write("  \"rentInformation\": " + rentinformationAsString(car.getRentInformation()) + "\n");
 
                 if (car == cars.get(cars.size() - 1)) {
                     file.write(" }\n");
@@ -130,19 +132,30 @@ public class FileDatabase implements Database {
         }
     }
 
-    public List<Car> getCars() {
+    @Override
+    public List<Car> getAllCars() {return cars;}
+
+    @Override
+    public List<Car> getCars(Filter filter) {
+
+        for (Car car : cars) {
+            if (filter.getTypes() == Collections.singletonList(car.getType())) {
+
+            }
+        }
         return cars;
     }
 
+    @Override
     public void addCar(Car car) {
         cars.add(car);
     }
-
+    @Override
     public void addRentInformationToCar(RentInformation rentings, int id) throws IOException {
         Car rentetCar = showCarByID(id);
         rentetCar.addRentInformation(rentings);
     }
-
+    @Override
     public void removeCar(Car car) {
         cars.remove(car);
     }

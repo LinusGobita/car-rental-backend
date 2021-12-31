@@ -1,36 +1,66 @@
 package ch.juventus.carrental.controller;
 
 
+import ch.juventus.carrental.model.Car;
+import ch.juventus.carrental.model.Filter;
 import ch.juventus.carrental.model.RentInformation;
 import ch.juventus.carrental.service.CarService;
+import ch.juventus.carrental.service.FilterEditor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1/")
 public class CarController {
 
-    private Map<Integer, String> cars = new HashMap<Integer, String>();
 
     private static final String FRONTEND_ENDPOINT = "http://localhost:4200";
     private final CarService carService;
-    public CarController(CarService carService) {this.carService = carService;}
+
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
+
+    @InitBinder
+    @SuppressWarnings("unused")
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Filter.class, new FilterEditor(new ObjectMapper()));
+    }
 
 
-    //Liefert eine Liste von allen Autos im System
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @GetMapping("cars")
-    public ResponseEntity<String> allCars() throws IOException {
-        String response = carService.getAllCars();
-        System.out.println("show all cars");
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<List<Car>> getCars(@RequestParam(required = false) Filter filter) throws IOException {
+        if (filter == null){
+            System.out.println("Get all Cars");
+            List<Car> response = carService.getAllCars();
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            List<Car> response = carService.getCars(filter);
+            System.out.println("Filter Cars with this Attributtes");
+            System.out.println("start        "+ filter.getStartDate());
+            System.out.println("end          "+ filter.getEndDate());
+            System.out.println("query        "+ filter.getQuery());
+            System.out.println("types        "+ filter.getTypes()); //
+            System.out.println("transmission "+ filter.getTransmission());
+            System.out.println("price         max : "+ filter.getPricePerDay().max + " | min : " + filter.getPricePerDay().max); //
+            System.out.println("seats        "+ Arrays.toString(filter.getSeats()));//
+            System.out.println("fule         "+ filter.getFuel());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
     }
+
+
     //Fügt ein neues Auto im System hinzu
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @PostMapping("car/")
@@ -38,6 +68,7 @@ public class CarController {
         carService.postCarToDB(car);
         System.out.println("add this car: " + car);
     }
+
     //Liefert ein Auto mit der gegebenen ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @GetMapping("car/{id}")
@@ -46,6 +77,7 @@ public class CarController {
         System.out.println("show car with id: " + id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
     //Editiert ein bestehendes Auto mit der gegebenen ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @PutMapping("car/{id}")
@@ -53,6 +85,7 @@ public class CarController {
         carService.editCar(car, id);
         System.out.println("edit car with id: " + id + car);
     }
+
     //Löscht ein bestehendes Auto mit der gegebenen ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @DeleteMapping("car/{id}")
@@ -60,23 +93,18 @@ public class CarController {
         carService.deleteCar(id);
         System.out.println("delete car with id: " + id);
     }
+
     //Vermietet ein Auto mit der gegebenen ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     //@PutMapping("car/{id}")
     @PostMapping("car/{id}/rentings")
     public void rentCar(@RequestBody RentInformation rentings, @PathVariable int id) throws IOException {
-        System.out.println("rent Car with id = " + id +" on Day "+ rentings);
+        System.out.println("rent Car with id = " + id + " on Day " + rentings);
         carService.rentCar(rentings, id);
     }
 
     //Sucht Autos mit gewissen Filterkriterien
     //Die Liste der passenden Autos soll aufsteigend nach Preis sortiert sein
-
-    @CrossOrigin(origins = FRONTEND_ENDPOINT)
-    //@GetMapping("cars") //?filter={filter}
-    public void filterCars(@RequestParam("filter") String[] filters) {
-        System.out.println(filters);
-    }
 
 
 }
