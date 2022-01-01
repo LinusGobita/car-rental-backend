@@ -16,7 +16,7 @@ public interface Database {
     Car jsonStringToObjact(String carString) throws JsonProcessingException;
     Integer idHeandler() throws IOException;
     void addCar(Car car);
-    List<Car> getCars(Filter filter);
+    List<Car> filterCars(Filter filter) throws JsonProcessingException;
     List<Car> getAllCars();
     void removeCar(Car car);
     void removeCarByID(Integer id) throws IOException;

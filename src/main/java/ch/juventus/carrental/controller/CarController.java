@@ -47,15 +47,6 @@ public class CarController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             List<Car> response = carService.getCars(filter);
-            System.out.println("Filter Cars with this Attributtes");
-            System.out.println("start        "+ filter.getStartDate());
-            System.out.println("end          "+ filter.getEndDate());
-            System.out.println("query        "+ filter.getQuery());
-            System.out.println("types        "+ filter.getTypes()); //
-            System.out.println("transmission "+ filter.getTransmission());
-            System.out.println("price         max : "+ filter.getPricePerDay().max + " | min : " + filter.getPricePerDay().max); //
-            System.out.println("seats        "+ Arrays.toString(filter.getSeats()));//
-            System.out.println("fule         "+ filter.getFuel());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }

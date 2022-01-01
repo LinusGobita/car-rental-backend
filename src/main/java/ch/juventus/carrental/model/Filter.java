@@ -1,5 +1,6 @@
 package ch.juventus.carrental.model;
 
+import ch.juventus.carrental.service.FilterEditor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ public class Filter {
     private List<Car.Type> types;
     private Car.Transmission transmission;
     private PricePerDay pricePerDay;
-    private int[] seats;
+    private List<Integer> seats;
     private boolean airCondition;
     private String fuel;
 
@@ -24,7 +25,7 @@ public class Filter {
             @JsonProperty(value = "types") List<Car.Type> types,
             @JsonProperty(value = "transmission") Car.Transmission transmission,
             @JsonProperty(value = "pricePerDay") PricePerDay pricePerDay,
-            @JsonProperty(value = "seats") int[] seats,
+            @JsonProperty(value = "seats") List<Integer> seats,
             @JsonProperty(value = "airCondition") boolean airCondition,
             @JsonProperty(value = "fuel") String fuel) {
         this.startDate = startDate;
@@ -37,24 +38,6 @@ public class Filter {
         this.airCondition = airCondition;
         this.fuel = fuel;
     }
-
-    /*
-    public class PricePerDay{
-        public double min;
-        public double max;
-    }
-
-
-    public void PricePerDay(
-            @JsonProperty(value = "min") double min,
-            @JsonProperty(value = "max") double max){
-        PricePerDay.min = min;
-        PricePerDay.max = max;
-    }
-
-     */
-
-
 
 
     public Date getStartDate() {
@@ -79,7 +62,7 @@ public class Filter {
         return transmission;
     }
 
-    public int[] getSeats() {
+    public List<Integer> getSeats() {
         return seats;
     }
 

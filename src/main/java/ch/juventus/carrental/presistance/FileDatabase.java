@@ -4,6 +4,7 @@ package ch.juventus.carrental.presistance;
 import ch.juventus.carrental.model.Car;
 import ch.juventus.carrental.model.Filter;
 import ch.juventus.carrental.model.RentInformation;
+import ch.juventus.carrental.service.FilterEditor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,6 +24,7 @@ public class FileDatabase implements Database {
 
     private String databasePath = "src/main/java/ch/juventus/carrental/presistance/cars.json";
     List<Car> cars = new ArrayList<Car>();
+
 
 
     @PostConstruct
@@ -88,6 +90,9 @@ public class FileDatabase implements Database {
         return car;
     }
 
+    /**
+     * Queck the next free id
+     */
     @Override
     public Integer idHeandler() throws IOException {
         Set<Integer> ids = new TreeSet<Integer>();
@@ -96,7 +101,6 @@ public class FileDatabase implements Database {
             ids.add((int) car.getId());
         }
         int i = ((TreeSet<Integer>) ids).last() + 1;
-        System.out.println("next id" + i);
         return i;
     }
 
@@ -136,17 +140,6 @@ public class FileDatabase implements Database {
     public List<Car> getAllCars() {return cars;}
 
     @Override
-    public List<Car> getCars(Filter filter) {
-
-        for (Car car : cars) {
-            if (filter.getTypes() == Collections.singletonList(car.getType())) {
-
-            }
-        }
-        return cars;
-    }
-
-    @Override
     public void addCar(Car car) {
         cars.add(car);
     }
@@ -165,5 +158,89 @@ public class FileDatabase implements Database {
         cars.remove(showCarByID(id));
     }
 
+    /**
+     * Filters
+     */
+    //Date
+    public void filterDate(){
+
+    }
+    //Query
+    public List<Car> filterQuery(List<Car> filterCars, Car car, Filter filter) throws JsonProcessingException {
+        if(filter.getQuery() == null){
+        }else if(objectToJsonString(car).toLowerCase(Locale.ROOT).contains(filter.getQuery().toLowerCase(Locale.ROOT))){
+        }else{
+            filterCars.remove(car);
+        }
+        return filterCars;
+    }
+
+    public List<Car> filterType(List<Car> filterCars, Car car, Filter filter){
+        if(filter.getTypes() == null ){
+        }else if(filter.getTypes().contains(car.getType())) {
+        } else {
+            filterCars.remove(car);
+        }
+        return filterCars;
+    }
+    public List<Car> filterTramsmission(List<Car> filterCars, Car car, Filter filter){
+        if(filter.getTransmission() == null ){
+        }else if(filter.getTransmission() == car.getTransmission()){
+        } else {
+            filterCars.remove(car);
+        }
+        return filterCars;
+    }
+  public List<Car> filterPrice(List<Car> filterCars, Car car, Filter filter){
+      if(filter.getPricePerDay().min == 0.0){
+      } else if (car.getPricePerDay() >= filter.getPricePerDay().min) {
+      } else {
+          filterCars.remove(car);
+      }
+      //0 < 160
+      if(filter.getPricePerDay().max == 0.0){
+      } else if (car.getPricePerDay() <= filter.getPricePerDay().max) {
+      } else {
+          filterCars.remove(car);
+      }
+      return filterCars;
+    }
+
+    public List<Car> filterSeats(List<Car> filterCars, Car car, Filter filter) {
+        if(filter.getSeats() == null){
+        } else if (filter.getSeats().contains(car.getSeats())) {
+        } else {
+            filterCars.remove(car); }
+        return filterCars;
+    }
+     public List<Car> filterAircondition(List<Car> filterCars, Car car, Filter filter) {
+         if (filter.isAirCondition() == car.isAirCondition()) {
+         } else {
+             filterCars.remove(car);
+         }
+        return filterCars;
+    }
+
+
+
+
+
+
+
+    public List<Car> filterCars(Filter filter) throws JsonProcessingException {
+        List<Car> filterCars = new ArrayList<Car>(cars);
+        FilterEditor.getFilterTable(cars, filter);
+
+        for(Car car : cars) {
+            filterQuery(filterCars, car, filter);
+            filterType(filterCars, car, filter);
+            filterTramsmission(filterCars, car, filter);
+            filterPrice(filterCars, car, filter);
+            filterSeats(filterCars, car, filter);
+            filterAircondition(filterCars, car, filter);
+        }
+
+        return filterCars;
+    }
 
 }

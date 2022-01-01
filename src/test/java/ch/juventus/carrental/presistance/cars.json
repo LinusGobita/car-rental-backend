@@ -2,46 +2,73 @@
  {
   "id": 5,
   "name": "Porsche Tycan 2",
-  "type": "LIMOUSINE",
-  "transmission": "MANUAL",
-  "seats": 5,  "pricePerDay": 60.0,
-  "airCondition": false,
-  "rentInformation":[]
+  "type": "COUPE",
+  "transmission": "AUTOMATIC",
+  "seats": 5,  "pricePerDay": 120.0,
+  "airCondition": true,
+  "rentInformation": []
  },
  {
   "id": 1,
   "name": "Mercedes SLS",
-  "type": "LIMOUSINE",
+  "type": "COUPE",
+  "transmission": "AUTOMATIC",
+  "seats": 2,  "pricePerDay": 130.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 3,
+  "name": "Porsche 911",
+  "type": "COUPE",
   "transmission": "MANUAL",
-  "seats": 5,  "pricePerDay": 20.0,
+  "seats": 2,  "pricePerDay": 100.0,
   "airCondition": false,
-  "rentInformation":[]
+  "rentInformation": []
+ },
+ {
+  "id": 4,
+  "name": "BMW i8",
+  "type": "COUPE",
+  "transmission": "MANUAL",
+  "seats": 4,  "pricePerDay": 150.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 6,
+  "name": "VW T5",
+  "type": "MINIBUS",
+  "transmission": "MANUAL",
+  "seats": 7,  "pricePerDay": 80.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 7,
+  "name": "Landrover",
+  "type": "SUV",
+  "transmission": "AUTOMATIC",
+  "seats": 5,  "pricePerDay": 90.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 8,
+  "name": "S Klasse",
+  "type": "CABRIO",
+  "transmission": "AUTOMATIC",
+  "seats": 4,  "pricePerDay": 125.0,
+  "airCondition": true,
+  "rentInformation": []
  },
  {
   "id": 2,
   "name": "Mercedes C 63 AMG",
   "type": "LIMOUSINE",
-  "transmission": "MANUAL",
-  "seats": 5,  "pricePerDay": 40.0,
-  "airCondition": false,
-  "rentInformation":[]
- },
- {
-  "id": 3,
-  "name": "Porsche 911",
-  "type": "LIMOUSINE",
-  "transmission": "MANUAL",
-  "seats": 5,  "pricePerDay": 90.0,
-  "airCondition": false,
-  "rentInformation":[]
- },
- {
-  "id": 4,
-  "name": "BMW i8 elektro",
-  "type": "LIMOUSINE",
-  "transmission": "MANUAL",
-  "seats": 5,  "pricePerDay": 600.0,
-  "airCondition": false,
-  "rentInformation":[]
+  "transmission": "AUTOMATIC",
+  "seats": 5,  "pricePerDay": 100.0,
+  "airCondition": true,
+  "rentInformation": []
  }
 ]

@@ -3,45 +3,18 @@
   "id": 5,
   "name": "Porsche Tycan 2",
   "type": "COUPE",
-  "transmission": "MANUAL",
-  "seats": 5,  "pricePerDay": 60.0,
-  "airCondition": false,
-  "rentInformation": []
- },
- {
-  "id": 4,
-  "name": "BMW i8 elektro",
-  "type": "CABRIO",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 300.0,
-  "airCondition": false,
-  "rentInformation": []
- },
- {
-  "id": 2,
-  "name": "Mercedes C 63 AMG Coupe",
-  "type": "COUPE",
-  "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 100.0,
-  "airCondition": false,
+  "seats": 5,  "pricePerDay": 120.0,
+  "airCondition": true,
   "rentInformation": []
  },
  {
   "id": 1,
   "name": "Mercedes SLS",
-  "type": "CABRIO",
-  "transmission": "MANUAL",
-  "seats": 5,  "pricePerDay": 20.0,
-  "airCondition": false,
-  "rentInformation": []
- },
- {
-  "id": 6,
-  "name": "VM T5",
-  "type": "MINIBUS",
-  "transmission": "MANUAL",
-  "seats": 8,  "pricePerDay": 70.0,
-  "airCondition": false,
+  "type": "COUPE",
+  "transmission": "AUTOMATIC",
+  "seats": 2,  "pricePerDay": 130.0,
+  "airCondition": true,
   "rentInformation": []
  },
  {
@@ -49,16 +22,70 @@
   "name": "Porsche 911",
   "type": "COUPE",
   "transmission": "MANUAL",
-  "seats": 2,  "pricePerDay": 90.0,
+  "seats": 2,  "pricePerDay": 100.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 4,
+  "name": "BMW i8",
+  "type": "COUPE",
+  "transmission": "MANUAL",
+  "seats": 4,  "pricePerDay": 150.0,
+  "airCondition": false,
+  "rentInformation": []
+ },
+ {
+  "id": 6,
+  "name": "VW T5",
+  "type": "MINIBUS",
+  "transmission": "MANUAL",
+  "seats": 7,  "pricePerDay": 80.0,
   "airCondition": false,
   "rentInformation": []
  },
  {
   "id": 7,
-  "name": "MERCRDES E",
-  "type": "LIMOUSINE",
+  "name": "Landrover",
+  "type": "SUV",
   "transmission": "AUTOMATIC",
   "seats": 5,  "pricePerDay": 90.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 8,
+  "name": "S Klasse",
+  "type": "CABRIO",
+  "transmission": "AUTOMATIC",
+  "seats": 4,  "pricePerDay": 125.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 2,
+  "name": "Mercedes C 63 AMG",
+  "type": "LIMOUSINE",
+  "transmission": "AUTOMATIC",
+  "seats": 5,  "pricePerDay": 100.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 9,
+  "name": "LI Au 5-50 True",
+  "type": "LIMOUSINE",
+  "transmission": "AUTOMATIC",
+  "seats": 5,  "pricePerDay": 50.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 9,
+  "name": "LI Au 5-60 True",
+  "type": "SUV",
+  "transmission": "AUTOMATIC",
+  "seats": 5,  "pricePerDay": 60.0,
   "airCondition": true,
   "rentInformation": []
  }

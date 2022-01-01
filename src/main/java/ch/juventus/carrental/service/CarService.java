@@ -22,19 +22,7 @@ public class CarService {
 
     public List<Car> getAllCars() throws IOException { return dataBase.getAllCars();}
 
-    public List<Car> getCars(Filter filter) throws IOException {
-        List<Car> cars = dataBase.getAllCars();
-        List<Car> filteretCars = new ArrayList<Car>();
-
-
-
-        for(Car car : cars) {
-            if(filter.getTypes().contains(car.getType())){
-                filteretCars.add(car);
-            }
-        }
-
-        return filteretCars;}
+    public List<Car> getCars(Filter filter) throws IOException {return dataBase.filterCars(filter);}
 
 
     public void postCarToDB(String carString) throws IOException {
@@ -62,5 +50,7 @@ public class CarService {
     public void rentCar(RentInformation rentings, int id) throws IOException {
         dataBase.addRentInformationToCar(rentings, id);
     }
+
+
 
 }
