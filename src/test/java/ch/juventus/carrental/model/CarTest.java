@@ -34,7 +34,10 @@ class CarTest {
     }
 
     @Test
-    void setId() {
+    void testSetId() {
+        car.setId(8);
+        System.out.println(car.getId());
+
     }
 
     @Test
@@ -80,6 +83,9 @@ class CarTest {
     }
 
     @Test
-    void addRentInformation() {
+    void testAddRentInformation() {
+        //dont know how to test
+        //car.addRentInformation();
+        System.out.println(car.getRentInformation());
     }
 }
