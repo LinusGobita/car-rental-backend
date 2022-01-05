@@ -4,3 +4,4 @@ public class PricePerDay {
     public double min;
     public double max;
 }
+
