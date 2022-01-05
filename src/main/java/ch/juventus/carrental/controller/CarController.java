@@ -43,7 +43,6 @@ public class CarController {
     @GetMapping("cars")
     public ResponseEntity<List<Car>> getCars(@RequestParam(required = false) Filter filter) throws IOException {
         if (filter == null){
-            System.out.println("Get all Cars");
             logger.info("Get all Cars");
             List<Car> response = carService.getAllCars();
             return new ResponseEntity<>(response, HttpStatus.OK);
@@ -58,11 +57,9 @@ public class CarController {
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @PostMapping("car/")
     public ResponseEntity<String> addCar(@RequestBody String car) throws IOException {
-
+        carService.postCarToDB(car);
         //Return a Logger information when car is added
         logger.info("add this car: " + car);
-        System.out.println("add this car: " + car);
-        carService.postCarToDB(car);
         return new ResponseEntity<>("New car added", HttpStatus.OK);
 
     }
@@ -73,7 +70,6 @@ public class CarController {
     public ResponseEntity<String> showCar(@PathVariable int id) throws IOException {
         String response = carService.getCarById(id);
         logger.info("show car with id " + id);
-        System.out.println("show car with id: " + id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -83,7 +79,6 @@ public class CarController {
     public ResponseEntity<String> editCar(@RequestBody String car, @PathVariable Integer id) throws IOException {
         carService.editCar(car, id);
         logger.info("edit car with id: " + id + car);
-        System.out.println("edit car with id: " + id + car);
         return new ResponseEntity<>("Car edited", HttpStatus.OK);
     }
 
@@ -93,7 +88,6 @@ public class CarController {
     public ResponseEntity<String> deleteCar(@PathVariable Integer id) throws IOException {
         carService.deleteCar(id);
         logger.info("delete car with id: " + id);
-        System.out.println("delete car with id: " + id);
         return new ResponseEntity<>("car deleted", HttpStatus.OK);
     }
 
@@ -102,9 +96,8 @@ public class CarController {
     //@PutMapping("car/{id}")
     @PostMapping("car/{id}/rentings")
     public ResponseEntity<String> rentCar(@RequestBody RentInformation rentings, @PathVariable int id) throws IOException {
-        logger.info("rent Car with id = " + id + " on Day " + rentings);
-        System.out.println("rent Car with id = " + id + " on Day " + rentings);
         carService.rentCar(rentings, id);
+        logger.info("rent Car with id = " + id + " on Day " + rentings);
         return new ResponseEntity<>("Car rented"+ id +" on Day " + rentings, HttpStatus.OK);
     }
 
