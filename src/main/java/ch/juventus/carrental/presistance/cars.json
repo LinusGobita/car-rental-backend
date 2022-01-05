@@ -4,89 +4,81 @@
   "name": "Porsche Tycan 2",
   "type": "COUPE",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 120.0,
+  "seats": 5,
+  "pricePerDay": 120.0,
   "airCondition": true,
-  "rentInformation": []
+  "rentInformation": [{"startDate": "2022-01-19", "endDate": "2022-01-27" ,"totalPrice" :"1080.0"},{"startDate": "2022-01-13", "endDate": "2022-01-14" ,"totalPrice" :"240.0"}]
+
  },
  {
   "id": 1,
   "name": "Mercedes SLS",
   "type": "COUPE",
   "transmission": "AUTOMATIC",
-  "seats": 2,  "pricePerDay": 130.0,
+  "seats": 2,
+  "pricePerDay": 130.0,
   "airCondition": true,
-  "rentInformation": []
+  "rentInformation": [] 
  },
  {
   "id": 3,
   "name": "Porsche 911",
   "type": "COUPE",
   "transmission": "MANUAL",
-  "seats": 2,  "pricePerDay": 100.0,
+  "seats": 2,
+  "pricePerDay": 100.0,
   "airCondition": false,
-  "rentInformation": []
+  "rentInformation": [] 
  },
  {
   "id": 4,
   "name": "BMW i8",
   "type": "COUPE",
   "transmission": "MANUAL",
-  "seats": 4,  "pricePerDay": 150.0,
+  "seats": 4,
+  "pricePerDay": 150.0,
   "airCondition": false,
-  "rentInformation": []
+  "rentInformation": [] 
  },
  {
   "id": 6,
   "name": "VW T5",
   "type": "MINIBUS",
   "transmission": "MANUAL",
-  "seats": 7,  "pricePerDay": 80.0,
+  "seats": 7,
+  "pricePerDay": 80.0,
   "airCondition": false,
-  "rentInformation": []
+  "rentInformation": [{"startDate": "null", "endDate": "null" ,"totalPrice" :"0.0"}]
+
  },
  {
   "id": 7,
   "name": "Landrover",
   "type": "SUV",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 90.0,
+  "seats": 5,
+  "pricePerDay": 90.0,
   "airCondition": true,
-  "rentInformation": []
+  "rentInformation": [] 
  },
  {
   "id": 8,
   "name": "S Klasse",
   "type": "CABRIO",
   "transmission": "AUTOMATIC",
-  "seats": 4,  "pricePerDay": 125.0,
+  "seats": 4,
+  "pricePerDay": 125.0,
   "airCondition": true,
-  "rentInformation": []
+  "rentInformation": [] 
  },
  {
   "id": 2,
   "name": "Mercedes C 63 AMG",
   "type": "LIMOUSINE",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 100.0,
+  "seats": 5,
+  "pricePerDay": 100.0,
   "airCondition": true,
-  "rentInformation": []
- },
- {
-  "id": 9,
-  "name": "LI Au 5-50 True",
-  "type": "LIMOUSINE",
-  "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 50.0,
-  "airCondition": true,
-  "rentInformation": []
- },
- {
-  "id": 9,
-  "name": "LI Au 5-60 True",
-  "type": "SUV",
-  "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 60.0,
-  "airCondition": true,
-  "rentInformation": []
+  "rentInformation": [{"startDate": "2022-01-19", "endDate": "2022-01-20" ,"totalPrice" :"200.0"},{"startDate": "2022-01-20", "endDate": "2022-01-29" ,"totalPrice" :"1000.0"}]
  }
 ]
