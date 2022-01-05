@@ -1,23 +1,5 @@
 [
  {
-  "id": 5,
-  "name": "Porsche Tycan 2",
-  "type": "COUPE",
-  "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 120.0,
-  "airCondition": true,
-  "rentInformation": []
- },
- {
-  "id": 1,
-  "name": "Mercedes SLS",
-  "type": "COUPE",
-  "transmission": "AUTOMATIC",
-  "seats": 2,  "pricePerDay": 130.0,
-  "airCondition": true,
-  "rentInformation": []
- },
- {
   "id": 3,
   "name": "Porsche 911",
   "type": "COUPE",
@@ -113,6 +95,24 @@
   "type": "CABRIO",
   "transmission": "AUTOMATIC",
   "seats": 4,  "pricePerDay": 120.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 5,
+  "name": "Porsche Tycan 2",
+  "type": "COUPE",
+  "transmission": "AUTOMATIC",
+  "seats": 5,  "pricePerDay": 120.0,
+  "airCondition": true,
+  "rentInformation": []
+ },
+ {
+  "id": 1,
+  "name": "Mercedes SLS",
+  "type": "COUPE",
+  "transmission": "AUTOMATIC",
+  "seats": 2,  "pricePerDay": 130.0,
   "airCondition": true,
   "rentInformation": []
  }

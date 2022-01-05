@@ -60,7 +60,7 @@ public class CarController {
         carService.postCarToDB(car);
         //Return a Logger information when car is added
         logger.info("add this car: " + car);
-        return new ResponseEntity<>("New car added", HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
 
     }
 
@@ -79,7 +79,7 @@ public class CarController {
     public ResponseEntity<String> editCar(@RequestBody String car, @PathVariable Integer id) throws IOException {
         carService.editCar(car, id);
         logger.info("edit car with id: " + id + car);
-        return new ResponseEntity<>("Car edited", HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
     //Deletes an existing car with the given ID
@@ -88,7 +88,7 @@ public class CarController {
     public ResponseEntity<String> deleteCar(@PathVariable Integer id) throws IOException {
         carService.deleteCar(id);
         logger.info("delete car with id: " + id);
-        return new ResponseEntity<>("car deleted", HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
     //Rent a car with the given ID
@@ -98,11 +98,7 @@ public class CarController {
     public ResponseEntity<String> rentCar(@RequestBody RentInformation rentings, @PathVariable int id) throws IOException {
         carService.rentCar(rentings, id);
         logger.info("rent Car with id = " + id + " on Day " + rentings);
-        return new ResponseEntity<>("Car rented"+ id +" on Day " + rentings, HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
-
-    //Searches for cars with certain filter criteria
-    //The list of suitable cars should be sorted in ascending order by price
-
 
 }
