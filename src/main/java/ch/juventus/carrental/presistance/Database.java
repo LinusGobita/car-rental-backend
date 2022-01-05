@@ -10,9 +10,8 @@ import java.util.List;
 
 public interface Database {
 
-    String dbAsString() throws IOException;
     Car showCarByID(Integer id) throws IOException;
-    String objectToJsonString(Car carObject) throws JsonProcessingException;
+    String carToJsonString(Car carObject) throws JsonProcessingException;
     Car jsonStringToObjact(String carString) throws JsonProcessingException;
     Integer idHeandler() throws IOException;
     void addCar(Car car);

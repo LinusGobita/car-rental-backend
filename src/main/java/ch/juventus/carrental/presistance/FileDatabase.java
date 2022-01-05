@@ -21,11 +21,10 @@ import java.util.*;
 
 @Repository
 public class FileDatabase implements Database {
-
-    private String databasePath = "src/main/java/ch/juventus/carrental/presistance/cars.json";
     List<Car> cars = new ArrayList<Car>();
+    private String databasePath = "src/main/java/ch/juventus/carrental/presistance/cars.json";
 
-
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @PostConstruct
     public void init() throws IOException {
@@ -50,15 +49,14 @@ public class FileDatabase implements Database {
         }, 2000, 10000);
     }
 
-    //Muss noch von cars genommen werden
-    public String dbAsString() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String arrayToJson = objectMapper.writeValueAsString(cars);
-        return arrayToJson;
+
+    @Override
+    public String carToJsonString(Car carObject) throws JsonProcessingException {
+        String carInString = objectMapper.writeValueAsString(carObject);
+        return carInString;
     }
 
     public String rentinformationAsString(List<RentInformation> rentings) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
         String arrayToJson = objectMapper.writeValueAsString(rentings);
         return arrayToJson;
     }
@@ -77,15 +75,7 @@ public class FileDatabase implements Database {
 
 
     @Override
-    public String objectToJsonString(Car carObject) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String carInString = objectMapper.writeValueAsString(carObject);
-        return carInString;
-    }
-
-    @Override
     public Car jsonStringToObjact(String carString) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
         Car car = objectMapper.readValue(carString, Car.class);
         return car;
     }
@@ -103,6 +93,117 @@ public class FileDatabase implements Database {
         int i = ((TreeSet<Integer>) ids).last() + 1;
         return i;
     }
+
+    @Override
+    public List<Car> getAllCars() {return cars;}
+
+    @Override
+    public void addCar(Car car) {
+        cars.add(car);
+    }
+
+    @Override
+    public void addRentInformationToCar(RentInformation rentings, int id) throws IOException {
+        Car rentetCar = showCarByID(id);
+        rentetCar.addRentInformation(rentings);
+    }
+
+    /**
+     * Remove car
+     * @param car
+     */
+    @Override
+    public void removeCar(Car car) {
+        cars.remove(car);
+    }
+
+    @Override
+    public void removeCarByID(Integer id) throws IOException {
+        cars.remove(showCarByID(id));
+    }
+
+    /**
+     * Filters
+     */
+
+
+    public List<Car> filterCars(Filter filter) throws JsonProcessingException {
+        List<Car> filterCars = new ArrayList<Car>(cars);
+        FilterEditor.getFilterTable(cars, filter);
+
+        for(Car car : cars) {
+            filterQuery(filterCars, car, filter);
+            filterType(filterCars, car, filter);
+            filterTramsmission(filterCars, car, filter);
+            filterPrice(filterCars, car, filter);
+            filterSeats(filterCars, car, filter);
+            filterAircondition(filterCars, car, filter);
+        }
+
+        return filterCars;
+    }
+
+    //Date
+    public void filterDate(){
+
+    }
+    //Query
+    public List<Car> filterQuery(List<Car> filterCars, Car car, Filter filter) throws JsonProcessingException {
+        if(filter.getQuery() == null || filter.getQuery().isEmpty()){
+        }else if(carToJsonString(car).toLowerCase(Locale.ROOT).contains(filter.getQuery().toLowerCase(Locale.ROOT))){
+        }else{
+            filterCars.remove(car);
+        }
+        return filterCars;
+    }
+
+    public List<Car> filterType(List<Car> filterCars, Car car, Filter filter){
+        if(filter.getTypes() == null  || filter.getTypes().isEmpty()){
+        }else if(filter.getTypes().contains(car.getType())) {
+        } else {
+            filterCars.remove(car);
+        }
+        return filterCars;
+    }
+    public List<Car> filterTramsmission(List<Car> filterCars, Car car, Filter filter){
+        if(filter.getTransmission() == null ){
+        }else if(filter.getTransmission() == car.getTransmission()){
+        } else {
+            filterCars.remove(car);
+        }
+        return filterCars;
+    }
+    public List<Car> filterPrice(List<Car> filterCars, Car car, Filter filter){
+      if(filter.getPricePerDay().min == 0.0){
+      } else if (car.getPricePerDay() >= filter.getPricePerDay().min) {
+      } else {
+          filterCars.remove(car);
+      }
+      //0 < 160
+      if(filter.getPricePerDay().max == 0.0){
+      } else if (car.getPricePerDay() <= filter.getPricePerDay().max) {
+      } else {
+          filterCars.remove(car);
+      }
+      return filterCars;
+    }
+
+    public List<Car> filterSeats(List<Car> filterCars, Car car, Filter filter) {
+        if(filter.getSeats() == null  || filter.getSeats().isEmpty()){
+        } else if (filter.getSeats().contains(car.getSeats())) {
+        } else {
+            filterCars.remove(car); }
+        return filterCars;
+    }
+
+    public List<Car> filterAircondition(List<Car> filterCars, Car car, Filter filter) {
+         if (filter.isAirCondition() == car.isAirCondition()) {
+         } else {
+             filterCars.remove(car);
+         }
+        return filterCars;
+    }
+
 
     public void saveArrayAsDB() throws IOException {
         FileWriter file = new FileWriter(databasePath);
@@ -134,113 +235,6 @@ public class FileDatabase implements Database {
             file.flush();
             file.close();
         }
-    }
-
-    @Override
-    public List<Car> getAllCars() {return cars;}
-
-    @Override
-    public void addCar(Car car) {
-        cars.add(car);
-    }
-    @Override
-    public void addRentInformationToCar(RentInformation rentings, int id) throws IOException {
-        Car rentetCar = showCarByID(id);
-        rentetCar.addRentInformation(rentings);
-    }
-    @Override
-    public void removeCar(Car car) {
-        cars.remove(car);
-    }
-
-    @Override
-    public void removeCarByID(Integer id) throws IOException {
-        cars.remove(showCarByID(id));
-    }
-
-    /**
-     * Filters
-     */
-    //Date
-    public void filterDate(){
-
-    }
-    //Query
-    public List<Car> filterQuery(List<Car> filterCars, Car car, Filter filter) throws JsonProcessingException {
-        if(filter.getQuery() == null){
-        }else if(objectToJsonString(car).toLowerCase(Locale.ROOT).contains(filter.getQuery().toLowerCase(Locale.ROOT))){
-        }else{
-            filterCars.remove(car);
-        }
-        return filterCars;
-    }
-
-    public List<Car> filterType(List<Car> filterCars, Car car, Filter filter){
-        if(filter.getTypes() == null ){
-        }else if(filter.getTypes().contains(car.getType())) {
-        } else {
-            filterCars.remove(car);
-        }
-        return filterCars;
-    }
-    public List<Car> filterTramsmission(List<Car> filterCars, Car car, Filter filter){
-        if(filter.getTransmission() == null ){
-        }else if(filter.getTransmission() == car.getTransmission()){
-        } else {
-            filterCars.remove(car);
-        }
-        return filterCars;
-    }
-  public List<Car> filterPrice(List<Car> filterCars, Car car, Filter filter){
-      if(filter.getPricePerDay().min == 0.0){
-      } else if (car.getPricePerDay() >= filter.getPricePerDay().min) {
-      } else {
-          filterCars.remove(car);
-      }
-      //0 < 160
-      if(filter.getPricePerDay().max == 0.0){
-      } else if (car.getPricePerDay() <= filter.getPricePerDay().max) {
-      } else {
-          filterCars.remove(car);
-      }
-      return filterCars;
-    }
-
-    public List<Car> filterSeats(List<Car> filterCars, Car car, Filter filter) {
-        if(filter.getSeats() == null){
-        } else if (filter.getSeats().contains(car.getSeats())) {
-        } else {
-            filterCars.remove(car); }
-        return filterCars;
-    }
-     public List<Car> filterAircondition(List<Car> filterCars, Car car, Filter filter) {
-         if (filter.isAirCondition() == car.isAirCondition()) {
-         } else {
-             filterCars.remove(car);
-         }
-        return filterCars;
-    }
-
-
-
-
-
-
-
-    public List<Car> filterCars(Filter filter) throws JsonProcessingException {
-        List<Car> filterCars = new ArrayList<Car>(cars);
-        FilterEditor.getFilterTable(cars, filter);
-
-        for(Car car : cars) {
-            filterQuery(filterCars, car, filter);
-            filterType(filterCars, car, filter);
-            filterTramsmission(filterCars, car, filter);
-            filterPrice(filterCars, car, filter);
-            filterSeats(filterCars, car, filter);
-            filterAircondition(filterCars, car, filter);
-        }
-
-        return filterCars;
     }
 
 }
