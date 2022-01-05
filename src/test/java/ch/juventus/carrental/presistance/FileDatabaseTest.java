@@ -50,7 +50,6 @@ class FileDatabaseTest {
         String carname = "Porsche 911";
 
         assertEquals(carname, fileDatabase.showCarByID(3).getName(), "Calculation result wrong");
-
     }
 
     @Test
