@@ -9,20 +9,21 @@ import ch.juventus.carrental.service.FilterEditor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1/")
 public class CarController {
 
+    //Logger declaration
+    final Logger logger = LoggerFactory.getLogger(CarController.class);
 
     private static final String FRONTEND_ENDPOINT = "http://localhost:4200";
     private final CarService carService;
@@ -43,6 +44,7 @@ public class CarController {
     public ResponseEntity<List<Car>> getCars(@RequestParam(required = false) Filter filter) throws IOException {
         if (filter == null){
             System.out.println("Get all Cars");
+            logger.info("Get all Cars");
             List<Car> response = carService.getAllCars();
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
@@ -52,50 +54,62 @@ public class CarController {
     }
 
 
-    //Fügt ein neues Auto im System hinzu
+    //Adds a new car to the system
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @PostMapping("car/")
-    public void addCar(@RequestBody String car) throws IOException {
-        carService.postCarToDB(car);
+    public ResponseEntity<String> addCar(@RequestBody String car) throws IOException {
+
+        //Return a Logger information when car is added
+        logger.info("add this car: " + car);
         System.out.println("add this car: " + car);
+        carService.postCarToDB(car);
+        return new ResponseEntity<>("New car added", HttpStatus.OK);
+
     }
 
-    //Liefert ein Auto mit der gegebenen ID
+    //Returns a car with the given ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @GetMapping("car/{id}")
     public ResponseEntity<String> showCar(@PathVariable int id) throws IOException {
         String response = carService.getCarById(id);
+        logger.info("show car with id " + id);
         System.out.println("show car with id: " + id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    //Editiert ein bestehendes Auto mit der gegebenen ID
+    //Edits an existing car with the given ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @PutMapping("car/{id}")
-    public void editCar(@RequestBody String car, @PathVariable Integer id) throws IOException {
+    public ResponseEntity<String> editCar(@RequestBody String car, @PathVariable Integer id) throws IOException {
         carService.editCar(car, id);
+        logger.info("edit car with id: " + id + car);
         System.out.println("edit car with id: " + id + car);
+        return new ResponseEntity<>("Car edited", HttpStatus.OK);
     }
 
-    //Löscht ein bestehendes Auto mit der gegebenen ID
+    //Deletes an existing car with the given ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @DeleteMapping("car/{id}")
-    public void deleteCar(@PathVariable Integer id) throws IOException {
+    public ResponseEntity<String> deleteCar(@PathVariable Integer id) throws IOException {
         carService.deleteCar(id);
+        logger.info("delete car with id: " + id);
         System.out.println("delete car with id: " + id);
+        return new ResponseEntity<>("car deleted", HttpStatus.OK);
     }
 
-    //Vermietet ein Auto mit der gegebenen ID
+    //Rent a car with the given ID
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     //@PutMapping("car/{id}")
     @PostMapping("car/{id}/rentings")
-    public void rentCar(@RequestBody RentInformation rentings, @PathVariable int id) throws IOException {
+    public ResponseEntity<String> rentCar(@RequestBody RentInformation rentings, @PathVariable int id) throws IOException {
+        logger.info("rent Car with id = " + id + " on Day " + rentings);
         System.out.println("rent Car with id = " + id + " on Day " + rentings);
         carService.rentCar(rentings, id);
+        return new ResponseEntity<>("Car rented"+ id +" on Day " + rentings, HttpStatus.OK);
     }
 
-    //Sucht Autos mit gewissen Filterkriterien
-    //Die Liste der passenden Autos soll aufsteigend nach Preis sortiert sein
+    //Searches for cars with certain filter criteria
+    //The list of suitable cars should be sorted in ascending order by price
 
 
 }
