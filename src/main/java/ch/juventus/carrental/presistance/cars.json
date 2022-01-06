@@ -6,7 +6,7 @@
   "transmission": "AUTOMATIC",
   "seats": 5,  "pricePerDay": 120.0,
   "airCondition": true,
-  "rentInformation": [{"startDate": "2022-01-20", "endDate": "2022-01-20" ,"totalPrice" :"120.0"}]
+  "rentInformation": [{"startDate": "2022-01-20", "endDate": "2022-01-20" ,"totalPrice" :"120.0"},{"startDate": "2022-01-06", "endDate": "2022-01-13" ,"totalPrice" :"960.0"}]
  },
  {
   "id": 1,

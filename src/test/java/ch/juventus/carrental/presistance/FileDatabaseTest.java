@@ -1,16 +1,20 @@
 package ch.juventus.carrental.presistance;
 
+import ch.juventus.carrental.model.Car;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileDatabaseTest {
 
     private FileDatabase fileDatabase;
+    private Object RentInformation;
 
     @BeforeAll
     public static void setupAll(){
@@ -19,9 +23,14 @@ class FileDatabaseTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        fileDatabase = new FileDatabase();
-        String databasePath = "src/test/java/ch/juventus/carrental/presistance/cars.json";
-        fileDatabase.init();
+        List<Car> testCars = new ArrayList<Car>();
+        Car car1 = new Car(1,"Seat", Car.Type.SUV, Car.Transmission.AUTOMATIC,4, 140, true, (List<ch.juventus.carrental.model.RentInformation>) RentInformation);
+        Car car2 = new Car(1,"Seat", Car.Type.SUV, Car.Transmission.AUTOMATIC,4, 140, true, (List<ch.juventus.carrental.model.RentInformation>) RentInformation);
+        Car car3 = new Car(1,"Seat", Car.Type.SUV, Car.Transmission.AUTOMATIC,4, 140, true, (List<ch.juventus.carrental.model.RentInformation>) RentInformation);
+
+        testCars.add(car1);
+        testCars.add(car2);
+        testCars.add(car3);
 
 
     }
