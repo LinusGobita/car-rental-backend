@@ -11,10 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -32,12 +30,14 @@ public class CarController {
         this.carService = carService;
     }
 
+    //if not used
     @InitBinder
     @SuppressWarnings("unused")
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Filter.class, new FilterEditor(new ObjectMapper()));
     }
 
+    //returns all cars
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @GetMapping("cars")
     public ResponseEntity<List<Car>> getCars(@RequestParam(required = false) Filter filter) throws IOException {

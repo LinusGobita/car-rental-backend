@@ -2,10 +2,11 @@ package ch.juventus.carrental.model;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class PricePerDayTest {
+
+    PricePerDay pricePerDay;
 
     @BeforeAll
     public static void setupAll(){
@@ -18,4 +19,8 @@ class PricePerDayTest {
         double max;
     }
 
-}
+
+
+    @Test
+    void testPricePerMin(){
+        }}

@@ -1,14 +1,13 @@
 package ch.juventus.carrental.model;
 
-import ch.juventus.carrental.service.FilterEditor;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class Filter {
+    // Define filter characteristics
     private LocalDate startDate;
     private LocalDate endDate;
     private String query;
@@ -19,6 +18,7 @@ public class Filter {
     private boolean airCondition;
     private String fuel;
 
+    //Turn Json into an object
     @JsonCreator
     public Filter(
             @JsonProperty(value = "startDate") String startDate,
@@ -41,7 +41,7 @@ public class Filter {
         this.fuel = fuel;
     }
 
-
+    //get for filer characteristics
     public LocalDate getStartDate() {
         return startDate;
     }

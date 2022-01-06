@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Car {
-
+    // Define car characteristics
     private long id;
     private final String name;
     private final Type type;
@@ -18,6 +18,8 @@ public class Car {
     private final boolean airCondition;
     private List<RentInformation> rentInformation;
 
+    //@JsonCreator is used to fine tune the constructor or factory method used in deserialization.
+    //Turn Json into an object
     @JsonCreator
     public Car(
             @JsonProperty("id") long id,
@@ -39,7 +41,7 @@ public class Car {
     }
 
 
-
+    // Define car Type
     public enum Type{
         CABRIO,
         LIMOUSINE,
@@ -49,16 +51,18 @@ public class Car {
         ESTATE
     }
 
-
+    // Define car Transmission
     public enum Transmission {
         MANUAL,
         AUTOMATIC;
 
     }
 
+    //get and set for car characteristics
     public long getId() {
         return id;
     }
+
     public void setId(long newId) {id = newId;}
 
     public String getName() {

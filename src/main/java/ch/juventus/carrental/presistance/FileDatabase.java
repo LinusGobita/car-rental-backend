@@ -11,16 +11,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Repository;
-
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
-
+//That is is the FileDatabse
 @Repository
 public class FileDatabase implements Database {
 
@@ -28,7 +25,7 @@ public class FileDatabase implements Database {
     private final ObjectMapper objectMapper = new ObjectMapper();
     List<Car> cars = new ArrayList<Car>();
 
-
+//PostConstruct is only loaded at the beginning
     @PostConstruct
     public void init() throws IOException {
         objectMapper.registerModule(new JavaTimeModule());
@@ -188,7 +185,7 @@ public class FileDatabase implements Database {
         return filterCars;
     }
 
-    //Privce
+    //Price
     public List<Car> filterPrice(List<Car> filterCars, Car car, Filter filter) {
         if (filter.getPricePerDay().min == 0.0) {
         } else if (car.getPricePerDay() >= filter.getPricePerDay().min) {
