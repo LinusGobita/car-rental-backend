@@ -94,9 +94,9 @@ public class CarController {
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     //@PutMapping("car/{id}")
     @PostMapping("car/{id}/rentings")
-    public ResponseEntity<String> rentCar(@RequestBody RentInformation rentings, @PathVariable int id) throws IOException {
-        carService.rentCar(rentings, id);
-        logger.info("rent Car with id = " + id + " on Day " + rentings);
+    public ResponseEntity<String> rentCar(@RequestBody RentInformation rent, @PathVariable int id) throws IOException {
+        carService.rentCar(rent, id);
+        logger.info("rent Car with id = " + id + " on Day " + rent.getStartDate() + " to " + rent.getEndDate() );
         return new ResponseEntity<>( HttpStatus.OK);
     }
 

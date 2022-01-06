@@ -11,10 +11,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class FileDatabaseTest {
 
-    private FileDatabase fileDatabase;
     private Object RentInformation;
+    private FileDatabase fileDatabase;
+
 
     @BeforeAll
     public static void setupAll(){
@@ -23,14 +25,9 @@ class FileDatabaseTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        List<Car> testCars = new ArrayList<Car>();
-        Car car1 = new Car(1,"Seat", Car.Type.SUV, Car.Transmission.AUTOMATIC,4, 140, true, (List<ch.juventus.carrental.model.RentInformation>) RentInformation);
-        Car car2 = new Car(1,"Seat", Car.Type.SUV, Car.Transmission.AUTOMATIC,4, 140, true, (List<ch.juventus.carrental.model.RentInformation>) RentInformation);
-        Car car3 = new Car(1,"Seat", Car.Type.SUV, Car.Transmission.AUTOMATIC,4, 140, true, (List<ch.juventus.carrental.model.RentInformation>) RentInformation);
-
-        testCars.add(car1);
-        testCars.add(car2);
-        testCars.add(car3);
+        fileDatabase = new FileDatabase();
+        String databasePath = "src/test/java/ch/juventus/carrental/presistance/cars.json";
+        fileDatabase.init();
 
 
     }
@@ -47,7 +44,7 @@ class FileDatabaseTest {
 
     @Test
     void testShowCarNameWithId4() throws IOException {
-        String carname = "BMW i8 elektro";
+        String carname = "BMW i8";
 
         assertEquals(carname, fileDatabase.showCarByID(4).getName(), "Calculation result wrong");
 
@@ -62,8 +59,7 @@ class FileDatabaseTest {
     @Test
     void testDeleteCarByID() throws IOException {
         int carid = 2;
-        assertEquals(carid, fileDatabase.showCarByID(2).getId(), "car deletet");
-
+        assertEquals(carid, fileDatabase.showCarByID(2).getId(), "car deleted");
     }
 
     @Test

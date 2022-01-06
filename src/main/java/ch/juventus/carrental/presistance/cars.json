@@ -4,15 +4,19 @@
   "name": "Porsche Tycan 2",
   "type": "COUPE",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 120.0,
+  "seats": 5,
+  "pricePerDay": 120.0,
   "airCondition": true,
-  "rentInformation": []  },
+  "rentInformation": [{"startDate": "2022-01-06", "endDate": "2022-01-05" ,"totalPrice" :"0.0"
+}]
+ },
  {
   "id": 1,
   "name": "Mercedes SLS",
   "type": "COUPE",
   "transmission": "AUTOMATIC",
-  "seats": 2,  "pricePerDay": 130.0,
+  "seats": 2,
+  "pricePerDay": 130.0,
   "airCondition": true,
   "rentInformation": []  },
  {
@@ -20,7 +24,8 @@
   "name": "Porsche 911",
   "type": "COUPE",
   "transmission": "MANUAL",
-  "seats": 2,  "pricePerDay": 100.0,
+  "seats": 2,
+  "pricePerDay": 100.0,
   "airCondition": false,
   "rentInformation": []  },
  {
@@ -28,15 +33,8 @@
   "name": "BMW i8",
   "type": "COUPE",
   "transmission": "MANUAL",
-  "seats": 4,  "pricePerDay": 150.0,
-  "airCondition": false,
-  "rentInformation": []  },
- {
-  "id": 6,
-  "name": "VW T5",
-  "type": "MINIBUS",
-  "transmission": "MANUAL",
-  "seats": 7,  "pricePerDay": 80.0,
+  "seats": 4,
+  "pricePerDay": 150.0,
   "airCondition": false,
   "rentInformation": []  },
  {
@@ -44,15 +42,19 @@
   "name": "Landrover",
   "type": "SUV",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 90.0,
+  "seats": 5,
+  "pricePerDay": 90.0,
   "airCondition": true,
-  "rentInformation": []  },
+  "rentInformation": [{"startDate": "2022-01-27", "endDate": "2022-01-27" ,"totalPrice" :"90.0"
+}]
+ },
  {
   "id": 8,
   "name": "S Klasse",
   "type": "CABRIO",
   "transmission": "AUTOMATIC",
-  "seats": 4,  "pricePerDay": 125.0,
+  "seats": 4,
+  "pricePerDay": 125.0,
   "airCondition": true,
   "rentInformation": []  },
  {
@@ -60,7 +62,8 @@
   "name": "Mercedes C 63 AMG",
   "type": "LIMOUSINE",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 100.0,
+  "seats": 5,
+  "pricePerDay": 100.0,
   "airCondition": true,
   "rentInformation": []  },
  {
@@ -68,23 +71,19 @@
   "name": "LI Au 5-50 True",
   "type": "LIMOUSINE",
   "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 50.0,
+  "seats": 5,
+  "pricePerDay": 50.0,
   "airCondition": true,
-  "rentInformation": []  },
- {
-  "id": 9,
-  "name": "LI Au 5-60 True",
-  "type": "SUV",
-  "transmission": "AUTOMATIC",
-  "seats": 5,  "pricePerDay": 60.0,
-  "airCondition": true,
-  "rentInformation": []  },
+  "rentInformation": [{"startDate": "2022-01-27", "endDate": "2022-01-28" ,"totalPrice" :"120.0"
+}]
+ },
  {
   "id": 12,
   "name": "Fiat 500",
   "type": "CABRIO",
   "transmission": "MANUAL",
-  "seats": 0,  "pricePerDay": 0.0,
+  "seats": 0,
+  "pricePerDay": 0.0,
   "airCondition": true,
   "rentInformation": []  },
  {
@@ -92,7 +91,8 @@
   "name": "Tesla Model 5",
   "type": "CABRIO",
   "transmission": "AUTOMATIC",
-  "seats": 4,  "pricePerDay": 120.0,
+  "seats": 4,
+  "pricePerDay": 120.0,
   "airCondition": true,
   "rentInformation": []  },
  {
@@ -100,8 +100,19 @@
   "name": "Tesla Model 8",
   "type": "MINIBUS",
   "transmission": "AUTOMATIC",
-  "seats": 2,  "pricePerDay": 50.0,
+  "seats": 2,
+  "pricePerDay": 50.0,
   "airCondition": false,
-  "rentInformation": [{"startDate": "2022-01-06", "endDate": "2022-01-21" ,"totalPrice" :"800.0"}]
- }
+  "rentInformation": [{"startDate": "2022-01-06", "endDate": "2022-01-21" ,"totalPrice" :"800.0"
+}]
+ },
+ {
+  "id": 6,
+  "name": "VW T5",
+  "type": "MINIBUS",
+  "transmission": "MANUAL",
+  "seats": 8,
+  "pricePerDay": 80.0,
+  "airCondition": false,
+  "rentInformation": []  }
 ]
