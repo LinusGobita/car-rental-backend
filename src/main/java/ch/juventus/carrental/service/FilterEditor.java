@@ -4,13 +4,13 @@ import ch.juventus.carrental.model.Car;
 import ch.juventus.carrental.model.Filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.beans.PropertyEditorSupport;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.List;
 
+
+//Print DB in terminal
 public class FilterEditor extends PropertyEditorSupport {
     private final ObjectMapper objectMapper;
     public FilterEditor(ObjectMapper objectMapper) {

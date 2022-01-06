@@ -5,9 +5,10 @@ import ch.juventus.carrental.model.Filter;
 import ch.juventus.carrental.model.RentInformation;
 import ch.juventus.carrental.presistance.Database;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.util.List;
+
+//managed Car status
 
 @Service
 public class CarService {
