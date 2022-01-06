@@ -1,14 +1,16 @@
 package ch.juventus.carrental.model;
 
 import ch.juventus.carrental.service.FilterEditor;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class Filter {
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String query;
     private List<Car.Type> types;
     private Car.Transmission transmission;
@@ -17,10 +19,10 @@ public class Filter {
     private boolean airCondition;
     private String fuel;
 
-
+    @JsonCreator
     public Filter(
-            @JsonProperty(value = "startDate") Date startDate,
-            @JsonProperty(value = "endDate") Date endDate,
+            @JsonProperty(value = "startDate") String startDate,
+            @JsonProperty(value = "endDate") String endDate,
             @JsonProperty(value = "query") String query,
             @JsonProperty(value = "types") List<Car.Type> types,
             @JsonProperty(value = "transmission") Car.Transmission transmission,
@@ -28,8 +30,8 @@ public class Filter {
             @JsonProperty(value = "seats") List<Integer> seats,
             @JsonProperty(value = "airCondition") boolean airCondition,
             @JsonProperty(value = "fuel") String fuel) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
         this.query = query;
         this.types = types;
         this.transmission = transmission;
@@ -40,11 +42,11 @@ public class Filter {
     }
 
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
