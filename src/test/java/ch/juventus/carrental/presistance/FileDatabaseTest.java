@@ -1,6 +1,7 @@
 package ch.juventus.carrental.presistance;
 
 import ch.juventus.carrental.model.Car;
+import ch.juventus.carrental.service.CarService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

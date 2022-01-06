@@ -237,7 +237,7 @@ public class FileDatabase implements Database {
                 file.write("  \"name\": \"" + car.getName() + "\",\n");
                 file.write("  \"type\": \"" + car.getType() + "\",\n");
                 file.write("  \"transmission\": \"" + car.getTransmission() + "\",\n");
-                file.write("  \"seats\": " + car.getSeats() + ",");
+                file.write("  \"seats\": " + car.getSeats() + ",\n");
                 file.write("  \"pricePerDay\": " + car.getPricePerDay() + ",\n");
                 file.write("  \"airCondition\": " + car.isAirCondition() + ",\n");
                 if (car.getRentInformation().isEmpty()) {
@@ -248,7 +248,7 @@ public class FileDatabase implements Database {
 
                     for (RentInformation rent : rentings) {
                         file.write("{\"startDate\": \"" + rent.getStartDate() + "\", \"endDate\": \"" + rent.getEndDate()
-                                + "\" ,\"totalPrice\" :\"" + rent.getTotalPrice() + "\"}");
+                                + "\" ,\"totalPrice\" :\"" + rent.getTotalPrice() + "\"\n}");
                         if (rent != rentings.get(rentings.size() - 1)) {
                             file.write(",");
                         } else {
