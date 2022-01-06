@@ -1,5 +1,6 @@
 package ch.juventus.carrental.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -17,8 +18,7 @@ public class Car {
     private final boolean airCondition;
     private List<RentInformation> rentInformation;
 
-
-    // Constructor
+    @JsonCreator
     public Car(
             @JsonProperty("id") long id,
             @JsonProperty(value = "name", required = true) String name,
@@ -28,7 +28,6 @@ public class Car {
             @JsonProperty(value = "pricePerDay", required = true) double pricePerDay,
             @JsonProperty(value = "airCondition", required = true) boolean airCondition,
             @JsonProperty(value = "rentInformation") List<RentInformation> rentInformation) {
-
         this.id = id;
         this.name = name;
         this.type = type;
@@ -37,7 +36,6 @@ public class Car {
         this.pricePerDay = pricePerDay;
         this.airCondition = airCondition;
         this.rentInformation = rentInformation;
-
     }
 
 

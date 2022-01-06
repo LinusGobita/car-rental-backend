@@ -38,7 +38,6 @@ public class CarController {
         binder.registerCustomEditor(Filter.class, new FilterEditor(new ObjectMapper()));
     }
 
-
     @CrossOrigin(origins = FRONTEND_ENDPOINT)
     @GetMapping("cars")
     public ResponseEntity<List<Car>> getCars(@RequestParam(required = false) Filter filter) throws IOException {
